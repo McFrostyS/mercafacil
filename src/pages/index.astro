@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Search from '../components/Search'
 ---
 
 <Layout title='Welcome to Astro.'>
-  <main class='text-white'>MercaFácil</main>
+  <main>
+    <h1 class='text-white'>MercaFácil</h1>
+    <Search client:visible />
+  </main>
 </Layout>
