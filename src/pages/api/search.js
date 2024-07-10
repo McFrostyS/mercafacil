@@ -22,3 +22,15 @@ export async function getMercadona(searchTerm) {
     }
   })
 }
+
+export async function getCarrefour(searchTerm) {
+  const uri = `https://www.carrefour.es/search-api/query/v1/search?query=${searchTerm}&scope=desktop&lang=es&rows=24&start=0&origin=default&f.op=OR`
+  const response = await fetch(uri)
+  const json = await response.json()
+  console.log(json)
+  return new Response(JSON.stringify(adaptCarrefourData(json)), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
