@@ -1,4 +1,9 @@
-import { adaptMercadonaData, adaptCarrefourData, adaptDiaData } from './adapter'
+import {
+  adaptMercadonaData,
+  adaptCarrefourData,
+  adaptDiaData,
+  adaptAlcampoData
+} from './adapter'
 
 export async function getMercadona(searchTerm) {
   const response = await fetch(
@@ -38,6 +43,17 @@ export async function getDia(searchTerm) {
   const response = await fetch(uri)
   const json = await response.json()
   return new Response(JSON.stringify(adaptDiaData(json)), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export async function getAlcampo(searchTerm) {
+  const uri = `https://www.compraonline.alcampo.es/api/v5/products/search?offset=0&term=${searchTerm}`
+  const response = await fetch(uri)
+  const json = await response.json()
+  return new Response(JSON.stringify(adaptAlcampoData(json)), {
     headers: {
       'Content-Type': 'application/json'
     }

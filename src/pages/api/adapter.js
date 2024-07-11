@@ -46,3 +46,16 @@ export function adaptDiaData(data) {
     }
   })
 }
+
+export function adaptAlcampoData(data) {
+  return data.products.map((item) => ({
+    brand: 'Alcampo',
+    id: item.productId,
+    thumbnail: item.image.src,
+    displayName: item.name,
+    price: item.price.current.amount,
+    previousPrice: null,
+    referencePrice: item.price.unit.current.amount,
+    referenceFormat: item.price.unit.current.unit
+  }))
+}
