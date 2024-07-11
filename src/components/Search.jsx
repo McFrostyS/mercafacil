@@ -1,13 +1,13 @@
 // src/components/SearchComponent.jsx
 import { useState } from 'react'
-import { getCarrefour, getMercadona } from '../pages/api/search'
+import { getCarrefour, getDia, getMercadona } from '../pages/api/search'
 
 export default function Search() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
 
   async function search() {
-    const response = await getCarrefour(query)
+    const response = await getDia(query)
     const json = await response.json()
     setResults(json)
   }
@@ -38,11 +38,11 @@ export default function Search() {
             <div className='card-body'>
               <h5 className='card-title'>{result.displayName}</h5>
               <p className='card-text'>
-                Precio: <s>{result.previousPrice}</s> {result.unitPrice} €
+                Precio: <s>{result.previousPrice}</s> {result.price} €
               </p>
               <p>
                 ({result.referencePrice} €/
-                {result.referenceFormat})
+                {result.referenceFormat.toLowerCase()})
               </p>
             </div>
           </div>

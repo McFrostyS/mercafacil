@@ -1,4 +1,4 @@
-import { adaptMercadonaData } from './adapter'
+import { adaptMercadonaData, adaptCarrefourData, adaptDiaData } from './adapter'
 
 export async function getMercadona(searchTerm) {
   const response = await fetch(
@@ -15,7 +15,6 @@ export async function getMercadona(searchTerm) {
   )
 
   const json = await response.json()
-  console.log(json)
   return new Response(JSON.stringify(adaptMercadonaData(json)), {
     headers: {
       'Content-Type': 'application/json'
@@ -27,8 +26,18 @@ export async function getCarrefour(searchTerm) {
   const uri = `https://www.carrefour.es/search-api/query/v1/search?query=${searchTerm}&scope=desktop&lang=es&rows=24&start=0&origin=default&f.op=OR`
   const response = await fetch(uri)
   const json = await response.json()
-  console.log(json)
   return new Response(JSON.stringify(adaptCarrefourData(json)), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export async function getDia(searchTerm) {
+  const uri = `https://www.dia.es/api/v1/search-back/search/reduced?q=${searchTerm}`
+  const response = await fetch(uri)
+  const json = await response.json()
+  return new Response(JSON.stringify(adaptDiaData(json)), {
     headers: {
       'Content-Type': 'application/json'
     }
