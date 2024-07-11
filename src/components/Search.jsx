@@ -1,13 +1,12 @@
-// src/components/SearchComponent.jsx
 import { useState } from 'react'
-import { getCarrefour, getDia, getMercadona } from '../pages/api/search'
+import { getAll, getCarrefour, getDia, getMercadona } from '../pages/api/search'
 
 export default function Search() {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
 
   async function search() {
-    const response = await getDia(query)
+    const response = await getAll(query)
     const json = await response.json()
     setResults(json)
   }

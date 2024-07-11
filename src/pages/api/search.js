@@ -59,3 +59,24 @@ export async function getAlcampo(searchTerm) {
     }
   })
 }
+
+export async function getAll(searchTerm) {
+  try {
+    const results = await Promise.all([getMercadona(searchTerm), getDia(searchTerm)])
+    const data = await Promise.all(
+      results.map(async (result) => {
+        return await result.json()
+      })
+    )
+    return new Response(JSON.stringify(data.flat()), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch (error) {
+    console.error(error)
+    return new Response(null, {
+      status: 500
+    })
+  }
+}
