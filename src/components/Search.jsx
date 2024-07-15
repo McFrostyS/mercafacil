@@ -36,6 +36,7 @@ export default function Search() {
             />
             <div className='card-body'>
               <h5 className='card-title'>{result.displayName}</h5>
+              <p className='brand-title'>{result.brand}</p>
               <p className='card-text'>
                 Precio: <s>{result.previousPrice}</s> {result.price} €
               </p>
