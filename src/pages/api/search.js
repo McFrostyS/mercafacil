@@ -60,6 +60,18 @@ export async function getAlcampo(searchTerm) {
   })
 }
 
+export async function getEroski(searchTerm) {
+  const uri = `https://supermercado.eroski.es/es/search/results/?q=${searchTerm}&suggestionsFilter=false`
+  const response = await fetch(uri)
+  const json = await response.json()
+  console.log(json)
+  return new Response(JSON.stringify(json), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 export async function getAll(searchTerm) {
   try {
     const results = await Promise.all([getMercadona(searchTerm), getDia(searchTerm)])
