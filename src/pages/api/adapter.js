@@ -59,3 +59,26 @@ export function adaptAlcampoData(data) {
     referenceFormat: item.price.unit.current.unit
   }))
 }
+
+export function adaptAldiData(result) {
+  if (!result || !Array.isArray(result.hits)) {
+    console.error('Invalid data format for Aldi data:', result)
+    return []
+  }
+
+  return result.hits.map((item) => {
+    const basePriceValue = parseFloat(item.basePriceValue) || null
+    const basePriceScale = item.basePriceScale || ''
+
+    return {
+      brand: 'Aldi',
+      id: item.objectID,
+      thumbnail: item.productPicture,
+      displayName: item.productName,
+      price: parseFloat(item.salesPrice),
+      previousPrice: parseFloat(item.oldPrice) || null,
+      referencePrice: basePriceValue,
+      referenceFormat: basePriceScale
+    }
+  })
+}

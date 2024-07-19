@@ -2,7 +2,8 @@ import {
   adaptMercadonaData,
   adaptCarrefourData,
   adaptDiaData,
-  adaptAlcampoData
+  adaptAlcampoData,
+  adaptAldiData
 } from './adapter'
 
 export async function getMercadona(searchTerm) {
@@ -72,9 +73,46 @@ export async function getEroski(searchTerm) {
   })
 }
 
+export async function getAldi(searchTerm) {
+  const uri =
+    'https://l9knu74io7-dsn.algolia.net/1/indexes/*/queries?X-Algolia-Api-Key=19b0e28f08344395447c7bdeea32da58&X-Algolia-Application-Id=L9KNU74IO7'
+  const body = {
+    requests: [
+      {
+        indexName: 'prod_es_es_es_offers',
+        params: `clickAnalytics=true&facets=[]&highlightPostTag=</ais-highlight-0000000000>&highlightPreTag=<ais-highlight-0000000000>&hitsPerPage=12&page=0&query=${searchTerm}&tagFilters=`
+      },
+      {
+        indexName: 'prod_es_es_es_assortment',
+        params: `clickAnalytics=true&facets=[]&highlightPostTag=</ais-highlight-0000000000>&highlightPreTag=<ais-highlight-0000000000>&hitsPerPage=12&page=0&query=${searchTerm}&tagFilters=`
+      }
+    ]
+  }
+
+  const response = await fetch(uri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+  const json = await response.json()
+  const adaptedData = json.results.map(adaptAldiData)
+
+  return new Response(JSON.stringify(adaptedData.flat()), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 export async function getAll(searchTerm) {
   try {
-    const results = await Promise.all([getMercadona(searchTerm), getDia(searchTerm)])
+    const results = await Promise.all([
+      getMercadona(searchTerm),
+      getDia(searchTerm),
+      getAldi(searchTerm)
+    ])
     const data = await Promise.all(
       results.map(async (result) => {
         return await result.json()
