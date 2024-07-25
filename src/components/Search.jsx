@@ -20,7 +20,7 @@ export default function Search() {
   console.log(results)
 
   return (
-    <main>
+    <main className=''>
       <header className='mb-4'>
         <form className='max-w-md mx-auto' onSubmit={handleSubmit}>
           <label
@@ -47,11 +47,13 @@ export default function Search() {
           </div>
         </form>
       </header>
-      <div className='grid grid-cols-4 gap-8'>
-        {results.map((result) => (
-          <ProductCard key={result.id} result={result} />
-        ))}
-      </div>
+      <section className='w-[90%] flex flex-col justify-center items-center mx-auto'>
+        <div className='grid grid-cols-4 gap-8'>
+          {results.map((result) => (
+            <ProductCard key={result.id} result={result} />
+          ))}
+        </div>
+      </section>
     </main>
   )
 }
