@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { getAll } from '../pages/api/search'
 import ProductCard from './ProductCard'
+import { MagnifyingGlass } from './icons/MagnifyingGlass'
 
 export default function Search() {
   const [query, setQuery] = useState('')
@@ -29,7 +30,9 @@ export default function Search() {
             Search
           </label>
           <div className='relative'>
-            <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'></div>
+            <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'>
+              <MagnifyingGlass />
+            </div>
             <input
               type='search'
               id='default-search'
