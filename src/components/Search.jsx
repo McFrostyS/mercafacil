@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { getAll, getCarrefour, getDia, getMercadona } from '../pages/api/search'
+import { getAll } from '../pages/api/search'
+import ProductCard from './ProductCard'
 
 export default function Search() {
   const [query, setQuery] = useState('')
@@ -28,24 +29,7 @@ export default function Search() {
       </header>
       <div className='grid grid-cols-4 gap-8'>
         {results.map((result) => (
-          <div key={result.id} className='card'>
-            <img
-              src={result.thumbnail}
-              alt={result.displayName}
-              className='card-img-top'
-            />
-            <div className='card-body'>
-              <h5 className='card-title'>{result.displayName}</h5>
-              <p className='brand-title'>{result.brand}</p>
-              <p className='card-text'>
-                Precio: <s>{result.previousPrice}</s> {result.price} €
-              </p>
-              <p>
-                ({result.referencePrice} €/
-                {result.referenceFormat.toLowerCase()})
-              </p>
-            </div>
-          </div>
+          <ProductCard key={result.id} result={result} />
         ))}
       </div>
     </main>
