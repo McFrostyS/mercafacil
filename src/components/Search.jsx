@@ -51,7 +51,7 @@ export default function Search() {
         </form>
       </header>
       <section className='flex justify-center align-middle'>
-        {loading ? (
+        {(results.length === 0) & loading ? (
           <div role='status'>
             <svg
               aria-hidden='true'
