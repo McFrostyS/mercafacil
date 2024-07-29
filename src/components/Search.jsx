@@ -20,7 +20,7 @@ export default function Search() {
   console.log(results)
 
   return (
-    <main className=''>
+    <main className='h-max'>
       <header className='mb-4'>
         <form className='max-w-md mx-auto' onSubmit={handleSubmit}>
           <label
@@ -53,6 +53,17 @@ export default function Search() {
             <ProductCard key={result.id} result={result} />
           ))}
         </div>
+      </section>
+      <section>
+        {results.length === 0 && (
+          <div className='text-center mt-8'>
+            <p className='text-lg font-medium text-gray-900 dark:text-white'>
+              Con MercaFácil podrás buscar los productos que necesites en los princiaples
+              supermercados en España con el propósito de ver rápidamente donde está más
+              barato.
+            </p>
+          </div>
+        )}
       </section>
     </main>
   )
