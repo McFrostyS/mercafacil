@@ -51,6 +51,7 @@ export default function Search() {
           </div>
         </form>
       </header>
+
       <section className='flex justify-center align-middle'>
         {(results.length === 0) & loading ? (
           <div role='status'>
@@ -58,6 +59,16 @@ export default function Search() {
             <span className='sr-only'>Loading...</span>
           </div>
         ) : null}
+      </section>
+
+      <section>
+        {!loading && results.length > 0 && (
+          <div className='w-[90%] flex flex-col justify-center items-start mx-auto mb-4'>
+            <h2 className='text-sm text-gray-300'>
+              Mostrando {results.length} resultados
+            </h2>
+          </div>
+        )}
       </section>
 
       <section className='w-[90%] flex flex-col justify-center items-center mx-auto'>
@@ -71,7 +82,7 @@ export default function Search() {
       <section className='flex flex-col justify-center items-center'>
         {results.length === 0 && (
           <div className='text-center mt-8 w-[60%]'>
-            <p className='text-lg font-medium text-gray-900 dark:text-white'>
+            <p className='text-lg font-medium text-white'>
               Con MercaFácil podrás buscar los productos que necesites en los princiaples
               supermercados en España con el propósito de ver rápidamente donde está más
               barato.
