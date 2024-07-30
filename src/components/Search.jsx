@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { getAll } from '../pages/api/search'
-import ProductCard from './ProductCard'
+import { ProductCard } from './ProductCard'
 import { MagnifyingGlass } from './icons/MagnifyingGlass'
 import { Spinner } from './icons/Spinner'
 
