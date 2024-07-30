@@ -61,12 +61,13 @@ export default function Search() {
       </section>
 
       <section className='w-[90%] flex flex-col justify-center items-center mx-auto'>
-        <div className='grid grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
           {results.map((result) => (
             <ProductCard key={result.id} result={result} />
           ))}
         </div>
       </section>
+
       <section className='flex flex-col justify-center items-center'>
         {results.length === 0 && (
           <div className='text-center mt-8 w-[60%]'>
