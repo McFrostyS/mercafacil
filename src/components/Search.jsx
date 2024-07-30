@@ -67,9 +67,9 @@ export default function Search() {
           ))}
         </div>
       </section>
-      <section>
+      <section className='flex flex-col justify-center items-center'>
         {results.length === 0 && (
-          <div className='text-center mt-8'>
+          <div className='text-center mt-8 w-[60%]'>
             <p className='text-lg font-medium text-gray-900 dark:text-white'>
               Con MercaFácil podrás buscar los productos que necesites en los princiaples
               supermercados en España con el propósito de ver rápidamente donde está más
