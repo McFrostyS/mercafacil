@@ -9,8 +9,10 @@ export const ProductCard = ({ result }) => {
         alt={result.displayName}
         className='card-img-top w-60 h-60 object-cover rounded-lg'
       />
-      <div className='card-body p-4'>
-        <h5 className='card-title text-xl font-semibold mb-2'>{result.displayName}</h5>
+      <div className='card-body p-4 w-full'>
+        <h5 className='card-title text-lg font-semibold mb-2 truncate'>
+          {result.displayName}
+        </h5>
         <p className='brand-title text-gray-500 mb-2'>{result.brand}</p>
         <p className='card-text text-lg mb-2'>
           Precio: <s className='text-red-500'>{result.previousPrice}</s>{' '}
