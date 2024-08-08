@@ -15,7 +15,7 @@ export const ProductCard = ({ result }) => {
         </h5>
         <p className='brand-title text-gray-500 mb-2'>{result.brand}</p>
         <p className='card-text text-lg mb-2'>
-          Precio: <s className='text-zinc-400'>{result.previousPrice}</s>{' '}
+          <s className='text-zinc-400 text-sm'>{result.previousPrice}</s>{' '}
           <span>{result.price} €</span>
         </p>
         <p className='text-sm text-gray-400'>
