@@ -83,7 +83,7 @@ export default function Search() {
         {results.length === 0 && (
           <div className='text-center mt-8 w-[60%]'>
             <p className='text-lg font-medium text-white'>
-              Con MercaFácil podrás buscar los productos que necesites en los princiaples
+              Con MercaFácil podrás buscar los productos que necesites en los principales
               supermercados en España con el propósito de ver rápidamente donde está más
               barato.
             </p>
